@@ -1,0 +1,203 @@
+:root{
+  --brand:#198754;        /* verde bootstrap */
+  --bg: #e1e4e2;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --radius:18px;
+}
+
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+.navbar{
+  backdrop-filter: blur(10px);
+  padding-top: 40px;
+}
+
+.navbar-brand{
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+/* Logo + texto alineados */
+.navbar-brand.brand-custom{
+  display: flex;
+  align-items: center;  /* centra verticalmente */
+  gap: 10px;
+  white-space: nowrap;  /* evita salto de línea */
+}
+
+/* Tamaño del logo en navbar */
+/* LOGO MÁS GRANDE (arreglo real) */
+.navbar-brand .logo-img{
+  height: 60px !important;
+  width: auto !important;
+  max-height: none !important;  /* <-- esto desbloquea el tamaño */
+}
+
+/* Texto del brand */
+.navbar-brand .brand-text{
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Centrado real del brand en el medio del navbar */
+.navbar .brand-center{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+/* En pantallas pequeñas, evita que se superponga */
+@media (max-width: 992px){
+  .navbar .brand-center{
+    position: static;
+    transform: none;
+    margin-right: auto;
+  }
+}
+
+/* =========================
+   TITULOS / COMPONENTES
+   ========================= */
+
+.page-title{
+  font-weight: 800;
+  letter-spacing: -0.6px;
+}
+
+.chip{
+  border-radius: 999px;
+  padding: .35rem .7rem;
+  font-weight: 600;
+}
+
+/* =========================
+   CARDS PRODUCTO
+   ========================= */
+
+.card-producto{
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+  transition: transform .15s ease, box-shadow .15s ease;
+  overflow: hidden;
+}
+
+.card-producto:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(15, 23, 42, .10);
+}
+
+.card-producto img{
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+  background: #fff;
+}
+
+.precio{
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.badge-cat{
+  display:inline-block;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+/* =========================
+   BOTONES
+   ========================= */
+
+.btn-brand{
+  background: var(--brand);
+  border-color: var(--brand);
+  font-weight: 700;
+  border-radius: 12px;
+}
+
+.btn-soft{
+  border-radius: 12px;
+}
+
+/* =========================
+   FONDOS / SECCIONES
+   ========================= */
+
+.bg-soft{
+  background: var(--bg);
+}
+
+.fondo-catalogo{
+  background: var(--bg);
+  padding: 24px;
+  border-radius: 24px;
+}
+
+/* Cinta animada */
+.ticker{
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.ticker-track{
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 10px;
+  animation: tickerMove 18s linear infinite;
+}
+
+@keyframes tickerMove{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* pausa al pasar el mouse (opcional) */
+.ticker:hover .ticker-track{
+  animation-play-state: paused;
+}
+
+/* accesibilidad: si alguien desactiva animaciones */
+@media (prefers-reduced-motion: reduce){
+  .ticker-track{ animation: none; }
+}
+
+.navbar-brand img{
+  height: 70px !important;
+  width: auto !important;
+}
+
+.whatsapp-float{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  z-index: 9999;
+}
+.whatsapp-float:hover{ transform: scale(1.08); }
+

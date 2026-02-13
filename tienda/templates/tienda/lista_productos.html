@@ -1,0 +1,74 @@
+{% extends "tienda/base.html" %}
+{% load formato %}
+
+{% block titulo %}Productos{% endblock %}
+
+{% block contenido %}
+<div class="ticker">
+  <div class="ticker-track">
+    <span>✅ Productos originales</span>
+    <span>•</span>
+    <span>🚚 Entregas rápidas</span>
+    <span>•</span>
+    <span>💳 Consultá disponibilidad por WhatsApp</span>
+
+    <!-- duplicado para que sea infinito -->
+    <span class="sep">•</span>
+    <span>✅ Productos originales</span>
+    <span>•</span>
+    <span>🚚 Entregas rápidas</span>
+    <span>•</span>
+    <span>💳 Consultá disponibilidad por WhatsApp</span>
+  </div>
+</div>
+
+
+<h4 class="mb-3">Nuestros productos</h4>
+
+<div class="mb-4 d-flex flex-wrap gap-2">
+  <a class="btn btn-sm {% if not categoria_actual %}btn-success{% else %}btn-outline-success{% endif %}"
+     href="/?q={{ texto }}">
+    Todos
+  </a>
+
+  {% for c in categorias %}
+    <a class="btn btn-sm {% if categoria_actual == c.slug %}btn-success{% else %}btn-outline-success{% endif %}"
+       href="/?categoria={{ c.slug }}&q={{ texto }}">
+      {{ c.nombre }}
+    </a>
+  {% endfor %}
+</div>
+
+<div class="row g-4">
+  {% for p in productos %}
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card-producto">
+        {% if p.imagen %}
+          <img src="{{ p.imagen.url }}" alt="{{ p.nombre }}">
+        {% else %}
+          <div style="height:210px" class="d-flex align-items-center justify-content-center text-muted">
+            Sin imagen
+          </div>
+        {% endif %}
+
+        <div class="p-3">
+          <div class="d-flex justify-content-between align-items-start gap-2">
+            <div>
+              <div class="fw-bold">{{ p.nombre }}</div>
+              <div class="badge-cat">{{ p.categoria }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="px-3 pb-3 d-flex justify-content-between align-items-center">
+          <div class="precio">{{ p.precio|gs }}</div>
+          <a class="btn btn-brand btn-sm" href="{% url 'tienda:detalle_producto' p.slug %}">Ver</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>No hay productos disponibles.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}
