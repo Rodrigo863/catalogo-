@@ -7,5 +7,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("tienda.urls")),
 ]
-if settings.DEBUG:
+if getattr(settings, "USE_LOCAL_MEDIA", False):
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
